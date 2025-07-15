@@ -1,814 +1,736 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="de">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2575.6">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SAITS - Swiss AI Tech Service | KI-Lösungen die wirklich arbeiten</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #000;
+      color: #fff;
+      overflow-x: hidden;
+    }
+    .header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(0,0,0,0.95);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      border-bottom: 1px solid #333;
+    }
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 5%;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .logo {
+      font-size: 32px;
+      font-weight: 900;
+      background: linear-gradient(45deg, #ff6b00, #ff9500);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -1px;
+    }
+    .nav-links {
+      display: flex;
+      gap: 30px;
+      list-style: none;
+    }
+    .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s;
+      position: relative;
+    }
+    .nav-links a:hover {
+      color: #ff6b00;
+    }
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      background: radial-gradient(circle at 20% 50%, #ff6b00 0%, transparent 50%),
+                  radial-gradient(circle at 80% 80%, #ff9500 0%, transparent 50%),
+                  #000;
+      margin-top: 80px;
+    }
+    .hero-content {
+      text-align: center;
+      max-width: 1200px;
+      padding: 0 20px;
+    }
+    .hero h1 {
+      font-size: clamp(3rem, 8vw, 6rem);
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 30px;
+      background: linear-gradient(45deg, #fff, #ff6b00);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .tagline {
+      font-size: clamp(1.2rem, 3vw, 1.8rem);
+      color: #ccc;
+      margin-bottom: 40px;
+      font-weight: 300;
+    }
+    .cta-button {
+      display: inline-block;
+      padding: 18px 40px;
+      background: linear-gradient(45deg, #ff6b00, #ff9500);
+      color: #000;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 18px;
+      border-radius: 50px;
+      transition: all 0.3s;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .cta-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(255, 107, 0, 0.5);
+    }
+    .stats {
+      padding: 60px 5%;
+      background: #0a0a0a;
+      border-top: 1px solid #333;
+      border-bottom: 1px solid #333;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 40px;
+      max-width: 1000px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .stat-item { position: relative; }
+    .stat-number {
+      font-size: 48px;
+      font-weight: 900;
+      background: linear-gradient(45deg, #ff6b00, #ff9500);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .stat-label {
+      color: #aaa;
+      margin-top: 10px;
+    }
+    .products {
+      padding: 100px 5%;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .section-title {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      text-align: center;
+      margin-bottom: 20px;
+      font-weight: 900;
+    }
+    .section-subtitle {
+      text-align: center;
+      color: #ff6b00;
+      font-size: 20px;
+      margin-bottom: 80px;
+      font-style: italic;
+    }
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 40px;
+    }
+    .product-card {
+      background: linear-gradient(135deg, #1a1a1a, #0a0a0a);
+      border: 2px solid #333;
+      border-radius: 20px;
+      padding: 40px;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .product-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(45deg, #ff6b00, #ff9500);
+      transform: scaleX(0);
+      transition: transform 0.3s;
+    }
+    .product-card:hover {
+      transform: translateY(-10px);
+      border-color: #ff6b00;
+    }
+    .product-card:hover::before {
+      transform: scaleX(1);
+    }
+    .product-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      margin-bottom: 20px;
+    }
+    .product-icon {
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+    .product-badge {
+      background: #ff6b00;
+      color: #000;
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .product-title {
+      font-size: 28px;
+      margin-bottom: 15px;
+      font-weight: 700;
+    }
+    .product-problem {
+      color: #ff6b00;
+      font-size: 16px;
+      margin-bottom: 15px;
+      font-weight: 500;
+    }
+    .product-desc {
+      color: #ccc;
+      line-height: 1.6;
+      margin-bottom: 25px;
+    }
+    .product-features {
+      list-style: none;
+      margin-bottom: 25px;
+    }
+    .product-features li {
+      padding: 8px 0;
+      color: #aaa;
+      position: relative;
+      padding-left: 25px;
+    }
+    .product-features li:before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: #ff6b00;
+      font-weight: bold;
+    }
+    .product-roi {
+      background: rgba(255, 107, 0, 0.1);
+      border: 1px solid #ff6b00;
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .roi-label {
+      color: #ff6b00;
+      font-size: 14px;
+    }
+    .roi-value {
+      font-size: 24px;
+      font-weight: 700;
+      color: #fff;
+    }
+    .product-joke {
+      font-style: italic;
+      color: #888;
+      font-size: 14px;
+      margin-top: 20px;
+      text-align: center;
+    }
+    .how-it-works {
+      padding: 100px 5%;
+      background: #0a0a0a;
+    }
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 60px;
+      max-width: 1200px;
+      margin: 60px auto 0;
+    }
+    .step {
+      text-align: center;
+      position: relative;
+    }
+    .step-number {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(45deg, #ff6b00, #ff9500);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+      font-weight: 900;
+      color: #000;
+      margin: 0 auto 30px;
+    }
+    .step-title {
+      font-size: 24px;
+      margin-bottom: 15px;
+      font-weight: 700;
+    }
+    .step-desc {
+      color: #aaa;
+      line-height: 1.6;
+    }
+    .pricing {
+      padding: 100px 5%;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 40px;
+      margin-top: 60px;
+    }
+    .pricing-card {
+      background: #1a1a1a;
+      border: 2px solid #333;
+      border-radius: 20px;
+      padding: 40px;
+      text-align: center;
+      transition: all 0.3s;
+      position: relative;
+    }
+    .pricing-card.popular {
+      border-color: #ff6b00;
+      transform: scale(1.05);
+    }
+    .pricing-card.popular::before {
+      content: 'MEISTGEWÄHLT';
+      position: absolute;
+      top: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #ff6b00;
+      color: #000;
+      padding: 5px 20px;
+      border-radius: 20px;
+      font-weight: 700;
+      font-size: 12px;
+    }
+    .pricing-card:hover {
+      transform: translateY(-10px);
+      border-color: #ff6b00;
+    }
+    .pricing-name {
+      font-size: 28px;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+    .pricing-desc {
+      color: #aaa;
+      margin-bottom: 20px;
+    }
+    .pricing-price {
+      font-size: 56px;
+      font-weight: 900;
+      margin: 20px 0;
+      background: linear-gradient(45deg, #ff6b00, #ff9500);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .pricing-price-suffix {
+      font-size: 18px;
+      color: #aaa;
+    }
+    .pricing-features {
+      list-style: none;
+      margin: 30px 0;
+      text-align: left;
+    }
+    .pricing-features li {
+      padding: 12px 0;
+      color: #ccc;
+      border-bottom: 1px solid #222;
+      display: flex;
+      align-items: center;
+    }
+    .pricing-features li:before {
+      content: '✓';
+      color: #ff6b00;
+      font-weight: bold;
+      margin-right: 10px;
+    }
+    .cta {
+      padding: 100px 5%;
+      text-align: center;
+      background: radial-gradient(circle at center, #ff6b00 0%, transparent 70%), #0a0a0a;
+    }
+    .cta h2 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      margin-bottom: 20px;
+      font-weight: 900;
+    }
+    .cta p {
+      font-size: 20px;
+      color: #ccc;
+      margin-bottom: 40px;
+    }
+    .footer {
+      padding: 60px 5%;
+      background: #000;
+      border-top: 1px solid #333;
+      text-align: center;
+    }
+    .footer-joke {
+      font-size: 18px;
+      color: #ff6b00;
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .product-grid { grid-template-columns: 1fr; }
+      .pricing-card.popular { transform: none; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    }
   </style>
 </head>
 <body>
-<p class="p1">&lt;!DOCTYPE html&gt;</p>
-<p class="p1">&lt;html lang="de"&gt;</p>
-<p class="p1">&lt;head&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;SAITS - Swiss AI Tech Service | KI-Lösungen die wirklich arbeiten&lt;/title&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;style&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>* {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin: 0;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 0;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>box-sizing: border-box;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>body {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: #000;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #fff;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>overflow-x: hidden;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.header {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>position: fixed;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>top: 0;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>width: 100%;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: rgba(0,0,0,0.95);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>backdrop-filter: blur(10px);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>z-index: 1000;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-bottom: 1px solid #333;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.nav {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>justify-content: space-between;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>align-items: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 20px 5%;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>max-width: 1400px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin: 0 auto;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.logo {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 32px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 900;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: linear-gradient(45deg, #ff6b00, #ff9500);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>-webkit-background-clip: text;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>-webkit-text-fill-color: transparent;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>letter-spacing: -1px;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.nav-links {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>gap: 30px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>list-style: none;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.nav-links a {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #fff;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>text-decoration: none;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 500;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>transition: all 0.3s;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>position: relative;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.nav-links a:hover {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #ff6b00;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.hero {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>min-height: 100vh;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>align-items: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>justify-content: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>position: relative;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: radial-gradient(circle at 20% 50%, #ff6b00 0%, transparent 50%),</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>radial-gradient(circle at 80% 80%, #ff9500 0%, transparent 50%),</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>#000;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-top: 80px;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.hero-content {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>text-align: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>max-width: 1200px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 0 20px;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.hero h1 {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: clamp(3rem, 8vw, 6rem);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 900;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>line-height: 1.1;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 30px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: linear-gradient(45deg, #fff, #ff6b00);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>-webkit-background-clip: text;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>-webkit-text-fill-color: transparent;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.tagline {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: clamp(1.2rem, 3vw, 1.8rem);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #ccc;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 40px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 300;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.cta-button {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: inline-block;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 18px 40px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: linear-gradient(45deg, #ff6b00, #ff9500);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #000;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>text-decoration: none;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 700;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 18px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 50px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>transition: all 0.3s;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>text-transform: uppercase;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>letter-spacing: 1px;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.cta-button:hover {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>transform: translateY(-3px);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 10px 30px rgba(255, 107, 0, 0.5);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.stats {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 60px 5%;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: #0a0a0a;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-top: 1px solid #333;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-bottom: 1px solid #333;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.stats-grid {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: grid;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));</p>
-<p class="p1"><span class="Apple-converted-space">            </span>gap: 40px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>max-width: 1000px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin: 0 auto;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>text-align: center;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.stat-item {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>position: relative;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.stat-number {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 48px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 900;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: linear-gradient(45deg, #ff6b00, #ff9500);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>-webkit-background-clip: text;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>-webkit-text-fill-color: transparent;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.stat-label {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #aaa;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-top: 10px;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.products {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 100px 5%;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>max-width: 1400px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin: 0 auto;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.section-title {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: clamp(2.5rem, 5vw, 4rem);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>text-align: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 20px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 900;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.section-subtitle {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>text-align: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #ff6b00;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 20px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 80px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-style: italic;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.product-grid {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: grid;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));</p>
-<p class="p1"><span class="Apple-converted-space">            </span>gap: 40px;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.product-card {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: linear-gradient(135deg, #1a1a1a, #0a0a0a);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border: 2px solid #333;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 20px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 40px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>transition: all 0.3s;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>position: relative;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>overflow: hidden;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.product-card::before {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>content: '';</p>
-<p class="p1"><span class="Apple-converted-space">            </span>position: absolute;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>top: 0;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>left: 0;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>right: 0;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>height: 4px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: linear-gradient(45deg, #ff6b00, #ff9500);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>transform: scaleX(0);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>transition: transform 0.3s;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.product-card:hover {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>transform: translateY(-10px);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-color: #ff6b00;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.product-card:hover::before {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>transform: scaleX(1);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.product-header {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>justify-content: space-between;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>align-items: start;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 20px;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.product-icon {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 48px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 20px;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.product-badge {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: #ff6b00;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #000;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 5px 15px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 20px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 12px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 700;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.product-title {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 28px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 15px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 700;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.product-problem {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #ff6b00;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 16px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 15px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 500;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.product-desc {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #ccc;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>line-height: 1.6;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 25px;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.product-features {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>list-style: none;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 25px;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.product-features li {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 8px 0;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #aaa;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>position: relative;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding-left: 25px;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.product-features li:before {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>content: '✓';</p>
-<p class="p1"><span class="Apple-converted-space">            </span>position: absolute;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>left: 0;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #ff6b00;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-weight: bold;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.product-roi {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: rgba(255, 107, 0, 0.1);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border: 1px solid #ff6b00;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 10px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 15px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 20px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>text-align: center;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.roi-label {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #ff6b00;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 14px;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.roi-value {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 24px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 700;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #fff;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.product-joke {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-style: italic;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #888;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 14px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-top: 20px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>text-align: center;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.how-it-works {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 100px 5%;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: #0a0a0a;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.steps {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: grid;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));</p>
-<p class="p1"><span class="Apple-converted-space">            </span>gap: 60px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>max-width: 1200px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin: 60px auto 0;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.step {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>text-align: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>position: relative;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.step-number {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>width: 80px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>height: 80px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: linear-gradient(45deg, #ff6b00, #ff9500);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 50%;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>align-items: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>justify-content: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 36px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 900;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #000;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin: 0 auto 30px;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.step-title {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 24px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 15px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 700;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.step-desc {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #aaa;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>line-height: 1.6;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.pricing {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 100px 5%;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>max-width: 1400px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin: 0 auto;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.pricing-grid {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: grid;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));</p>
-<p class="p1"><span class="Apple-converted-space">            </span>gap: 40px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-top: 60px;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.pricing-card {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: #1a1a1a;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border: 2px solid #333;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 20px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 40px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>text-align: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>transition: all 0.3s;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>position: relative;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.pricing-card.popular {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-color: #ff6b00;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>transform: scale(1.05);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.pricing-card.popular::before {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>content: 'MEISTGEWÄHLT';</p>
-<p class="p1"><span class="Apple-converted-space">            </span>position: absolute;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>top: -15px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>left: 50%;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>transform: translateX(-50%);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: #ff6b00;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #000;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 5px 20px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 20px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 700;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 12px;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.pricing-card:hover {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>transform: translateY(-10px);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-color: #ff6b00;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.pricing-name {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 28px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 10px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 700;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.pricing-desc {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #aaa;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 20px;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.pricing-price {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 56px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 900;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin: 20px 0;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: linear-gradient(45deg, #ff6b00, #ff9500);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>-webkit-background-clip: text;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>-webkit-text-fill-color: transparent;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.pricing-price-suffix {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 18px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #aaa;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.pricing-features {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>list-style: none;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin: 30px 0;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>text-align: left;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.pricing-features li {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 12px 0;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #ccc;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-bottom: 1px solid #222;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>align-items: center;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.pricing-features li:before {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>content: '✓';</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #ff6b00;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-weight: bold;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-right: 10px;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.cta {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 100px 5%;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>text-align: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: radial-gradient(circle at center, #ff6b00 0%, transparent 70%),</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>#0a0a0a;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.cta h2 {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: clamp(2rem, 5vw, 3.5rem);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 20px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 900;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.cta p {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 20px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #ccc;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 40px;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.footer {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 60px 5%;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: #000;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-top: 1px solid #333;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>text-align: center;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.footer-joke {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 18px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #ff6b00;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 20px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-style: italic;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>@media (max-width: 768px) {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>.nav-links {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>display: none;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p2"><span class="Apple-converted-space">            </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>.product-grid {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>grid-template-columns: 1fr;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p2"><span class="Apple-converted-space">            </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>.pricing-card.popular {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>transform: none;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p2"><span class="Apple-converted-space">            </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>.stats-grid {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>grid-template-columns: repeat(2, 1fr);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</p>
-<p class="p1">&lt;/head&gt;</p>
-<p class="p1">&lt;body&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;header class="header"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;nav class="nav"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="logo"&gt;SAITS&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;ul class="nav-links"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;li&gt;&lt;a href="#products"&gt;KI-Lösungen&lt;/a&gt;&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;li&gt;&lt;a href="#how-it-works"&gt;So funktioniert's&lt;/a&gt;&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;li&gt;&lt;a href="#pricing"&gt;Preise&lt;/a&gt;&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;li&gt;&lt;a href="#demo"&gt;Live Demo&lt;/a&gt;&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/nav&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/header&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;section class="hero"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="hero-content"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;h1&gt;KI-Lösungen, die wirklich arbeiten - während Sie schlafen&lt;/h1&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;p class="tagline"&gt;Vollautomatisierte Systeme für echte Business-Probleme. Swiss Made. DSGVO-konform. Ohne Bullshit.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;a href="#products" class="cta-button"&gt;Zeig mir die Magie&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;section class="stats"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="stats-grid"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="stat-item"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="stat-number"&gt;24/7&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="stat-label"&gt;Automatisierung&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="stat-item"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="stat-number"&gt;80%&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="stat-label"&gt;Zeitersparnis&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="stat-item"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="stat-number"&gt;100%&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="stat-label"&gt;Swiss Quality&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="stat-item"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="stat-number"&gt;0&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="stat-label"&gt;Kopfschmerzen&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;section id="products" class="products"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;h2 class="section-title"&gt;Fertige KI-Lösungen&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;p class="section-subtitle"&gt;"Plug &amp; Play - aber in intelligent"&lt;/p&gt;</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="product-grid"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="product-card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="product-header"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="product-icon"&gt;🚀&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;span class="product-badge"&gt;BESTSELLER&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;h3 class="product-title"&gt;Marketing Autopilot&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="product-problem"&gt;Nervt Sie auch, dass Marketing 24/7 Content braucht?&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="product-desc"&gt;Vollautomatisches Marketing-System: Ideen generieren, Bilder &amp; Videos erstellen, auf allen Plattformen posten. Mit Human-in-the-Loop für die Feinabstimmung.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;ul class="product-features"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;KI-generierte Content-Ideen täglich&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Automatische Bild- &amp; Video-Erstellung&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Multi-Platform Publishing&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;A/B-Testing &amp; Optimierung&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Human Review Dashboard&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="product-roi"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="roi-label"&gt;Zeitersparnis pro Woche&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="roi-value"&gt;30+ Stunden&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="product-joke"&gt;"Ihre Konkurrenz schläft noch - Ihr Marketing nicht"&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="product-card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="product-header"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="product-icon"&gt;🤖&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;span class="product-badge"&gt;NEU&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;h3 class="product-title"&gt;AI Influencer System&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="product-problem"&gt;Influencer-Marketing ohne Drama?&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="product-desc"&gt;Ihr persönlicher KI-Influencer: Chattet mit Followern, bucht Termine, erstellt Content. Immer gut gelaunt, nie im Urlaub.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;ul class="product-features"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;24/7 Community Management&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Automatische DM-Beantwortung&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Content-Planung &amp; Erstellung&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Termin-Buchungssystem&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Persönlichkeits-Anpassung&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="product-roi"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="roi-label"&gt;Engagement Rate&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="roi-value"&gt;+250%&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="product-joke"&gt;"Mitarbeiter des Monats - jeden Monat"&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="product-card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="product-header"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="product-icon"&gt;📊&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;span class="product-badge"&gt;SMART&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;h3 class="product-title"&gt;Smart Accounting&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="product-problem"&gt;Buchhaltung macht keinen Spass?&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="product-desc"&gt;Vollautomatische Buchhaltung mit E-Mail-Integration. Rechnungen werden erkannt, kategorisiert und gebucht - während Sie wichtigeres tun.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;ul class="product-features"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;E-Mail &amp; Scan-Integration&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Automatische Kategorisierung&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Echtzeit-Dashboards&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Steueroptimierung&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Export für Treuhänder&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="product-roi"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="roi-label"&gt;Fehlerquote&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="roi-value"&gt;-99%&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="product-joke"&gt;"Macht Buchhaltung sexy - fast"&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="product-card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="product-header"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="product-icon"&gt;🏠&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;span class="product-badge"&gt;GAME CHANGER&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;h3 class="product-title"&gt;Immo Assistant&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="product-problem"&gt;Hunderte Anfragen, null Zeit?&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="product-desc"&gt;Automatisches Mieter-Screening: Erfasst Interessenten von allen Portalen, prüft Bonität, vereinbart Besichtigungen, erstellt Verträge.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;ul class="product-features"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Multi-Portal Integration&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Automatische Bonitätsprüfung&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;KI-Terminvereinbarung&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Vertragsautomatisierung&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Mieter-Scoring System&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="product-roi"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="roi-label"&gt;Vermietungszeit&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="roi-value"&gt;-75%&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="product-joke"&gt;"Findet Traummieter schneller als Sie 'Betreibung' sagen können"&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="product-card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="product-header"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="product-icon"&gt;💼&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;span class="product-badge"&gt;HR REVOLUTION&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;h3 class="product-title"&gt;HR Talent Scout&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="product-problem"&gt;Top-Talente finden sich nicht von selbst?&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="product-desc"&gt;KI-gestützte LinkedIn-Suche: Findet perfekte Kandidaten, personalisierte Ansprache, Termin-Koordination - alles automatisch.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;ul class="product-features"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;LinkedIn Premium Integration&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;KI-Kandidaten-Matching&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Personalisierte Ansprache&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Interview-Scheduling&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Bewerber-Tracking&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="product-roi"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="roi-label"&gt;Time-to-Hire&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="roi-value"&gt;-60%&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="product-joke"&gt;"Headhunter hassen diesen Trick"&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="product-card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="product-header"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="product-icon"&gt;🎯&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;span class="product-badge"&gt;CUSTOM&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;h3 class="product-title"&gt;Ihre Idee?&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="product-problem"&gt;Haben Sie ein spezifisches Problem?&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="product-desc"&gt;Wir bauen massgeschneiderte KI-Lösungen für Ihre individuellen Herausforderungen. Von der Idee bis zur fertigen Automation.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;ul class="product-features"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Individuelle Beratung&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Massgeschneiderte Entwicklung&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Integration in Ihre Systeme&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Schulung &amp; Support&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Skalierbare Architektur&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="product-roi"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="roi-label"&gt;Ihrer Fantasie&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="roi-value"&gt;∞&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="product-joke"&gt;"Wenn Sie es träumen können, können wir es automatisieren"&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;section id="how-it-works" class="how-it-works"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;h2 class="section-title"&gt;So einfach geht's&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;p class="section-subtitle"&gt;"Einfacher als IKEA-Möbel - und funktioniert garantiert"&lt;/p&gt;</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="steps"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="step"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="step-number"&gt;1&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;h3 class="step-title"&gt;Auswählen&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="step-desc"&gt;Wählen Sie Ihre KI-Lösung oder lassen Sie uns eine massschneidern.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="step"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="step-number"&gt;2&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;h3 class="step-title"&gt;Einrichten&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="step-desc"&gt;Wir kümmern uns um alles. Integration, Anpassung, Testing - läuft.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="step"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="step-number"&gt;3&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;h3 class="step-title"&gt;Zurücklehnen&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="step-desc"&gt;Ihre KI arbeitet 24/7. Sie trinken Kaffee und zählen die gesparte Zeit.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;section id="pricing" class="pricing"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;h2 class="section-title"&gt;Investition in Ihre Zukunft&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;p class="section-subtitle"&gt;"Günstiger als ein Praktikant - aber produktiver"&lt;/p&gt;</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="pricing-grid"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="pricing-card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;h3 class="pricing-name"&gt;Starter&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="pricing-desc"&gt;Für KI-Neugierige&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="pricing-price"&gt;999&lt;span class="pricing-price-suffix"&gt;CHF/Monat&lt;/span&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;ul class="pricing-features"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;1 KI-Lösung nach Wahl&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Bis zu 10'000 Aktionen/Monat&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Basic Dashboard&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;E-Mail Support&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Monatlich kündbar&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;a href="#" class="cta-button"&gt;Jetzt starten&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p2"><span class="Apple-converted-space">            </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="pricing-card popular"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;h3 class="pricing-name"&gt;Business&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="pricing-desc"&gt;Für ernsthafte Automatisierer&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="pricing-price"&gt;2'999&lt;span class="pricing-price-suffix"&gt;CHF/Monat&lt;/span&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;ul class="pricing-features"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;3 KI-Lösungen nach Wahl&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Bis zu 100'000 Aktionen/Monat&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Advanced Analytics&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Priority Support&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Custom Anpassungen&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;API-Zugang&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;a href="#" class="cta-button"&gt;Durchstarten&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p2"><span class="Apple-converted-space">            </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="pricing-card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;h3 class="pricing-name"&gt;Enterprise&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="pricing-desc"&gt;Für KI-Visionäre&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="pricing-price"&gt;Custom&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;ul class="pricing-features"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Unbegrenzte KI-Lösungen&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Unbegrenzte Aktionen&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Dedizierte Infrastruktur&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;24/7 Support mit SLA&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Massgeschneiderte Entwicklung&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;On-Premise Option&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Persönlicher Success Manager&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;a href="#" class="cta-button"&gt;Kontakt aufnehmen&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;section class="cta"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;h2&gt;Bereit für die Zukunft?&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;Während Ihre Konkurrenz noch Excel-Tabellen pflegt, erobern Sie mit KI den Markt.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;a href="#demo" class="cta-button"&gt;Kostenlose Demo buchen&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;footer class="footer"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;p class="footer-joke"&gt;"KI ist wie ein Schweizer Taschenmesser - nur dass es auch noch selbst denkt"&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;&amp;copy; 2024 SAITS - Swiss AI Tech Service. Alle Rechte vorbehalten. Die KI hat keine Rechte, arbeitet aber trotzdem gerne für Sie.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/footer&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;script&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>// Smooth scrolling</p>
-<p class="p1"><span class="Apple-converted-space">        </span>document.querySelectorAll('a[href^="#"]').forEach(anchor =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>anchor.addEventListener('click', function (e) {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>e.preventDefault();</p>
-<p class="p1"><span class="Apple-converted-space">                </span>const target = document.querySelector(this.getAttribute('href'));</p>
-<p class="p1"><span class="Apple-converted-space">                </span>if (target) {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>target.scrollIntoView({</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>behavior: 'smooth',</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>block: 'start'</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>});</p>
-<p class="p1"><span class="Apple-converted-space">                </span>}</p>
-<p class="p1"><span class="Apple-converted-space">            </span>});</p>
-<p class="p1"><span class="Apple-converted-space">        </span>});</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>// Animate elements on scroll</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const observerOptions = {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>threshold: 0.1,</p>
-<p class="p1"><span class="Apple-converted-space">            </span>rootMargin: '0px 0px -100px 0px'</p>
-<p class="p1"><span class="Apple-converted-space">        </span>};</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>const observer = new IntersectionObserver((entries) =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>entries.forEach(entry =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>if (entry.isIntersecting) {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>entry.target.style.opacity = '1';</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>entry.target.style.transform = 'translateY(0)';</p>
-<p class="p1"><span class="Apple-converted-space">                </span>}</p>
-<p class="p1"><span class="Apple-converted-space">            </span>});</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}, observerOptions);</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>// Apply initial styles and observe</p>
-<p class="p1"><span class="Apple-converted-space">        </span>document.querySelectorAll('.product-card, .step, .pricing-card, .stat-item').forEach(el =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>el.style.opacity = '0';</p>
-<p class="p1"><span class="Apple-converted-space">            </span>el.style.transform = 'translateY(30px)';</p>
-<p class="p1"><span class="Apple-converted-space">            </span>el.style.transition = 'all 0.6s ease-out';</p>
-<p class="p1"><span class="Apple-converted-space">            </span>observer.observe(el);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>});</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>// Animate numbers on scroll</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const animateValue = (el, start, end, duration) =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>let startTimestamp = null;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const step = (timestamp) =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>if (!startTimestamp) startTimestamp = timestamp;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>const progress = Math.min((timestamp</p>
+  <header class="header">
+    <nav class="nav">
+      <div class="logo">SAITS</div>
+      <ul class="nav-links">
+        <li><a href="#products">KI-Lösungen</a></li>
+        <li><a href="#how-it-works">So funktioniert's</a></li>
+        <li><a href="#pricing">Preise</a></li>
+        <li><a href="#demo">Live Demo</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>KI-Lösungen, die wirklich arbeiten - während Sie schlafen</h1>
+      <p class="tagline">Vollautomatisierte Systeme für echte Business-Probleme. Swiss Made. DSGVO-konform. Ohne Bullshit.</p>
+      <a href="#products" class="cta-button">Zeig mir die Magie</a>
+    </div>
+  </section>
+
+  <section class="stats">
+    <div class="stats-grid">
+      <div class="stat-item">
+        <div class="stat-number">24/7</div>
+        <div class="stat-label">Automatisierung</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">80%</div>
+        <div class="stat-label">Zeitersparnis</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">100%</div>
+        <div class="stat-label">Swiss Quality</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">0</div>
+        <div class="stat-label">Kopfschmerzen</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="products" class="products">
+    <h2 class="section-title">Fertige KI-Lösungen</h2>
+    <p class="section-subtitle">"Plug & Play - aber in intelligent"</p>
+    <div class="product-grid">
+      <div class="product-card">
+        <div class="product-header">
+          <div class="product-icon">🚀</div>
+          <span class="product-badge">BESTSELLER</span>
+        </div>
+        <h3 class="product-title">Marketing Autopilot</h3>
+        <p class="product-problem">Nervt Sie auch, dass Marketing 24/7 Content braucht?</p>
+        <p class="product-desc">Vollautomatisches Marketing-System: Ideen generieren, Bilder &amp; Videos erstellen, auf allen Plattformen posten. Mit Human-in-the-Loop für die Feinabstimmung.</p>
+        <ul class="product-features">
+          <li>KI-generierte Content-Ideen täglich</li>
+          <li>Automatische Bild- &amp; Video-Erstellung</li>
+          <li>Multi-Platform Publishing</li>
+          <li>A/B-Testing &amp; Optimierung</li>
+          <li>Human Review Dashboard</li>
+        </ul>
+        <div class="product-roi">
+          <div class="roi-label">Zeitersparnis pro Woche</div>
+          <div class="roi-value">30+ Stunden</div>
+        </div>
+        <p class="product-joke">"Ihre Konkurrenz schläft noch - Ihr Marketing nicht"</p>
+      </div>
+      <div class="product-card">
+        <div class="product-header">
+          <div class="product-icon">🤖</div>
+          <span class="product-badge">NEU</span>
+        </div>
+        <h3 class="product-title">AI Influencer System</h3>
+        <p class="product-problem">Influencer-Marketing ohne Drama?</p>
+        <p class="product-desc">Ihr persönlicher KI-Influencer: Chattet mit Followern, bucht Termine, erstellt Content. Immer gut gelaunt, nie im Urlaub.</p>
+        <ul class="product-features">
+          <li>24/7 Community Management</li>
+          <li>Automatische DM-Beantwortung</li>
+          <li>Content-Planung &amp; Erstellung</li>
+          <li>Termin-Buchungssystem</li>
+          <li>Persönlichkeits-Anpassung</li>
+        </ul>
+        <div class="product-roi">
+          <div class="roi-label">Engagement Rate</div>
+          <div class="roi-value">+250%</div>
+        </div>
+        <p class="product-joke">"Mitarbeiter des Monats - jeden Monat"</p>
+      </div>
+      <div class="product-card">
+        <div class="product-header">
+          <div class="product-icon">📊</div>
+          <span class="product-badge">SMART</span>
+        </div>
+        <h3 class="product-title">Smart Accounting</h3>
+        <p class="product-problem">Buchhaltung macht keinen Spass?</p>
+        <p class="product-desc">Vollautomatische Buchhaltung mit E-Mail-Integration. Rechnungen werden erkannt, kategorisiert und gebucht - während Sie wichtigeres tun.</p>
+        <ul class="product-features">
+          <li>E-Mail &amp; Scan-Integration</li>
+          <li>Automatische Kategorisierung</li>
+          <li>Echtzeit-Dashboards</li>
+          <li>Steueroptimierung</li>
+          <li>Export für Treuhänder</li>
+        </ul>
+        <div class="product-roi">
+          <div class="roi-label">Fehlerquote</div>
+          <div class="roi-value">-99%</div>
+        </div>
+        <p class="product-joke">"Macht Buchhaltung sexy - fast"</p>
+      </div>
+      <div class="product-card">
+        <div class="product-header">
+          <div class="product-icon">🏠</div>
+          <span class="product-badge">GAME CHANGER</span>
+        </div>
+        <h3 class="product-title">Immo Assistant</h3>
+        <p class="product-problem">Hunderte Anfragen, null Zeit?</p>
+        <p class="product-desc">Automatisches Mieter-Screening: Erfasst Interessenten von allen Portalen, prüft Bonität, vereinbart Besichtigungen, erstellt Verträge.</p>
+        <ul class="product-features">
+          <li>Multi-Portal Integration</li>
+          <li>Automatische Bonitätsprüfung</li>
+          <li>KI-Terminvereinbarung</li>
+          <li>Vertragsautomatisierung</li>
+          <li>Mieter-Scoring System</li>
+        </ul>
+        <div class="product-roi">
+          <div class="roi-label">Vermietungszeit</div>
+          <div class="roi-value">-75%</div>
+        </div>
+        <p class="product-joke">"Findet Traummieter schneller als Sie 'Betreibung' sagen können"</p>
+      </div>
+      <div class="product-card">
+        <div class="product-header">
+          <div class="product-icon">💼</div>
+          <span class="product-badge">HR REVOLUTION</span>
+        </div>
+        <h3 class="product-title">HR Talent Scout</h3>
+        <p class="product-problem">Top-Talente finden sich nicht von selbst?</p>
+        <p class="product-desc">KI-gestützte LinkedIn-Suche: Findet perfekte Kandidaten, personalisierte Ansprache, Termin-Koordination - alles automatisch.</p>
+        <ul class="product-features">
+          <li>LinkedIn Premium Integration</li>
+          <li>KI-Kandidaten-Matching</li>
+          <li>Personalisierte Ansprache</li>
+          <li>Interview-Scheduling</li>
+          <li>Bewerber-Tracking</li>
+        </ul>
+        <div class="product-roi">
+          <div class="roi-label">Time-to-Hire</div>
+          <div class="roi-value">-60%</div>
+        </div>
+        <p class="product-joke">"Headhunter hassen diesen Trick"</p>
+      </div>
+      <div class="product-card">
+        <div class="product-header">
+          <div class="product-icon">🎯</div>
+          <span class="product-badge">CUSTOM</span>
+        </div>
+        <h3 class="product-title">Ihre Idee?</h3>
+        <p class="product-problem">Haben Sie ein spezifisches Problem?</p>
+        <p class="product-desc">Wir bauen massgeschneiderte KI-Lösungen für Ihre individuellen Herausforderungen. Von der Idee bis zur fertigen Automation.</p>
+        <ul class="product-features">
+          <li>Individuelle Beratung</li>
+          <li>Massgeschneiderte Entwicklung</li>
+          <li>Integration in Ihre Systeme</li>
+          <li>Schulung &amp; Support</li>
+          <li>Skalierbare Architektur</li>
+        </ul>
+        <div class="product-roi">
+          <div class="roi-label">Ihrer Fantasie</div>
+          <div class="roi-value">∞</div>
+        </div>
+        <p class="product-joke">"Wenn Sie es träumen können, können wir es automatisieren"</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="how-it-works" class="how-it-works">
+    <h2 class="section-title">So einfach geht's</h2>
+    <p class="section-subtitle">"Einfacher als IKEA-Möbel - und funktioniert garantiert"</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-number">1</div>
+        <h3 class="step-title">Auswählen</h3>
+        <p class="step-desc">Wählen Sie Ihre KI-Lösung oder lassen Sie uns eine massschneidern.</p>
+      </div>
+      <div class="step">
+        <div class="step-number">2</div>
+        <h3 class="step-title">Einrichten</h3>
+        <p class="step-desc">Wir kümmern uns um alles. Integration, Anpassung, Testing - läuft.</p>
+      </div>
+      <div class="step">
+        <div class="step-number">3</div>
+        <h3 class="step-title">Zurücklehnen</h3>
+        <p class="step-desc">Ihre KI arbeitet 24/7. Sie trinken Kaffee und zählen die gesparte Zeit.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="pricing" class="pricing">
+    <h2 class="section-title">Investition in Ihre Zukunft</h2>
+    <p class="section-subtitle">"Günstiger als ein Praktikant - aber produktiver"</p>
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <h3 class="pricing-name">Starter</h3>
+        <p class="pricing-desc">Für KI-Neugierige</p>
+        <div class="pricing-price">999<span class="pricing-price-suffix">CHF/Monat</span></div>
+        <ul class="pricing-features">
+          <li>1 KI-Lösung nach Wahl</li>
+          <li>Bis zu 10'000 Aktionen/Monat</li>
+          <li>Basic Dashboard</li>
+          <li>E-Mail Support</li>
+          <li>Monatlich kündbar</li>
+        </ul>
+        <a href="#" class="cta-button">Jetzt starten</a>
+      </div>
+      <div class="pricing-card popular">
+        <h3 class="pricing-name">Business</h3>
+        <p class="pricing-desc">Für ernsthafte Automatisierer</p>
+        <div class="pricing-price">2'999<span class="pricing-price-suffix">CHF/Monat</span></div>
+        <ul class="pricing-features">
+          <li>3 KI-Lösungen nach Wahl</li>
+          <li>Bis zu 100'000 Aktionen/Monat</li>
+          <li>Advanced Analytics</li>
+          <li>Priority Support</li>
+          <li>Custom Anpassungen</li>
+          <li>API-Zugang</li>
+        </ul>
+        <a href="#" class="cta-button">Durchstarten</a>
+      </div>
+      <div class="pricing-card">
+        <h3 class="pricing-name">Enterprise</h3>
+        <p class="pricing-desc">Für KI-Visionäre</p>
+        <div class="pricing-price">Custom</div>
+        <ul class="pricing-features">
+          <li>Unbegrenzte KI-Lösungen</li>
+          <li>Unbegrenzte Aktionen</li>
+          <li>Dedizierte Infrastruktur</li>
+          <li>24/7 Support mit SLA</li>
+          <li>Massgeschneiderte Entwicklung</li>
+          <li>On-Premise Option</li>
+          <li>Persönlicher Success Manager</li>
+        </ul>
+        <a href="#" class="cta-button">Kontakt aufnehmen</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <h2>Bereit für die Zukunft?</h2>
+    <p>Während Ihre Konkurrenz noch Excel-Tabellen pflegt, erobern Sie mit KI den Markt.</p>
+    <a href="mailto:hello@saits.ai?subject=Bitte%20Um%20Konsultation&body=Guten%20Tag,%20ich%20war%20auf%20Ihrer%20Website%20und%20w%C3%BCnsche%20mir%20einige%20Dinge%20zu%20automatisieren.%20Bitte%20nehmen%20Sie%20kurzfristig%20Kontakt%20mit%20mir%20auf." class="cta-button">Kostenlose Demo buchen</a>
+  </section>
+
+  <footer class="footer">
+    <p class="footer-joke">"KI ist wie ein Schweizer Taschenmesser - nur dass es auch noch selbst denkt"</p>
+    <p>&copy; 2024 SAITS - Swiss AI Tech Service. Alle Rechte vorbehalten. Die KI hat keine Rechte, arbeitet aber trotzdem gerne für Sie.</p>
+    <p><a href="impressum.html" style="color:#ff6b00; text-decoration:underline;">Impressum & Datenschutz</a></p>
+  </footer>
+
+  <!-- Impressum & Datenschutz -->
+  <section id="impressum" class="products" style="background:#0a0a0a; padding:80px 5%; margin-top:40px;">
+    <h2 class="section-title">Impressum</h2>
+    <div style="max-width:700px; margin:0 auto; color:#fff;">
+      <p><strong>SAITS - Swiss AI Tech Services</strong><br>
+      a Brand of Shameless GmbH<br>
+      Obstgartenstrasse 11<br>
+      8703 Erlenbach<br>
+      Schweiz<br>
+      <br>
+      E-Mail: <a href="mailto:hello@saits.ch" style="color:#ff6b00;">hello@saits.ch</a></p>
+      <br>
+      <h3 style="color:#ff6b00; margin-top:40px;">Datenschutzerklärung</h3>
+      <p>Diese Datenschutzerklärung informiert Sie über die Art, den Umfang und Zweck der Erhebung und Verwendung personenbezogener Daten auf dieser Website gemäss Schweizer Datenschutzgesetz (DSG) und – soweit anwendbar – der Datenschutz-Grundverordnung (DSGVO).</p>
+      <h4 style="color:#ff6b00;">Verantwortliche Stelle</h4>
+      <p>SAITS - Swiss AI Tech Services<br>
+a Brand of Shameless GmbH<br>
+Obstgartenstrasse 11<br>
+8703 Erlenbach<br>
+Schweiz<br>
+E-Mail: <a href="mailto:hello@saits.ch" style="color:#ff6b00;">hello@saits.ch</a></p>
+      <h4 style="color:#ff6b00;">Erhebung und Verarbeitung von Daten</h4>
+      <p>Wir erheben und verarbeiten personenbezogene Daten nur, soweit dies zur Bereitstellung einer funktionsfähigen Website sowie unserer Inhalte und Leistungen erforderlich ist. Die Nutzung dieser Website ist in der Regel ohne Angabe personenbezogener Daten möglich.</p>
+      <h4 style="color:#ff6b00;">Kontaktaufnahme</h4>
+      <p>Wenn Sie uns per E-Mail kontaktieren, werden Ihre Angaben zwecks Bearbeitung der Anfrage sowie für den Fall von Anschlussfragen gespeichert. Diese Daten geben wir nicht ohne Ihre Einwilligung weiter.</p>
+      <h4 style="color:#ff6b00;">Cookies</h4>
+      <p>Unsere Website verwendet keine Cookies zur Nachverfolgung oder Analyse.</p>
+      <h4 style="color:#ff6b00;">Server-Logfiles</h4>
+      <p>Der Provider dieser Website erhebt und speichert automatisch Informationen in sogenannten Server-Logfiles, die Ihr Browser automatisch übermittelt. Dies sind z.B. Browsertyp, Betriebssystem, Referrer-URL, Hostname des zugreifenden Rechners und Uhrzeit der Serveranfrage. Diese Daten sind nicht bestimmten Personen zuordenbar und werden nicht mit anderen Datenquellen zusammengeführt.</p>
+      <h4 style="color:#ff6b00;">Ihre Rechte</h4>
+      <p>Sie haben das Recht auf Auskunft, Berichtigung, Löschung und Einschränkung der Verarbeitung Ihrer personenbezogenen Daten im Rahmen der gesetzlichen Bestimmungen. Kontaktieren Sie uns dazu unter <a href="mailto:hello@saits.ch" style="color:#ff6b00;">hello@saits.ch</a>.</p>
+      <h4 style="color:#ff6b00;">Änderungen</h4>
+      <p>Wir behalten uns vor, diese Datenschutzerklärung jederzeit zu ändern. Es gilt die jeweils aktuelle, auf dieser Website publizierte Fassung.</p>
+      <br>
+      <p>Letzte Aktualisierung: Juli 2024</p>
+    </div>
+  </section>
+
+  <script>
+    // Smooth scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+    // Animate elements on scroll
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -100px 0px'
+    };
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, observerOptions);
+    document.querySelectorAll('.product-card, .step, .pricing-card, .stat-item').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(30px)';
+      el.style.transition = 'all 0.6s ease-out';
+      observer.observe(el);
+    });
+  </script>
 </body>
 </html>
