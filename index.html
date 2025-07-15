@@ -41,6 +41,15 @@
       -webkit-text-fill-color: transparent;
       letter-spacing: -1px;
     }
+    .logo-sub {
+      font-size: 14px;
+      font-weight: 400;
+      color: #fff;
+      letter-spacing: 0;
+      margin-top: 2px;
+      background: none;
+      -webkit-text-fill-color: #fff;
+    }
     .nav-links {
       display: flex;
       gap: 30px;
@@ -408,7 +417,10 @@
 <body>
   <header class="header">
     <nav class="nav">
-      <div class="logo">SAITS</div>
+      <div class="logo-group" style="display:flex; flex-direction:column; align-items:flex-start;">
+        <span class="logo">SAITS</span>
+        <span class="logo-sub" style="font-size:14px; font-weight:400; color:#fff; letter-spacing:0; margin-top:2px; background:none; -webkit-text-fill-color:#fff;">Swiss AI Tech Services</span>
+      </div>
       <ul class="nav-links">
         <li><a href="#products">KI-Lösungen</a></li>
         <li><a href="#how-it-works">So funktioniert's</a></li>
